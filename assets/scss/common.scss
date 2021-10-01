@@ -1,0 +1,35 @@
+html {
+  font-weight: 400;
+  font-family: 'Roboto','Noto Sans JP', sans-serif;
+  font-size: 14px;
+  line-height: 2em;
+  color: var(--color-font-default);
+  background-color: var(--color-bg-default);
+}
+
+//  --------------------
+//  Font
+//  --------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+input,
+textarea,
+button,
+select,
+a,
+li {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 2em;
+  color: var(--color-font-default);
+}
+
+
+
+

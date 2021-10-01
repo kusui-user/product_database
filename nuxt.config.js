@@ -6,7 +6,7 @@ export default {
   head: {
     title: 'product_database',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
@@ -20,6 +20,9 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/scss/reset.scss',
+    '@/assets/scss/common.scss',
+    '@/assets/scss/app.scss',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -31,12 +34,23 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    "@nuxtjs/style-resources",
   ],
+
+  styleResources: {
+    scss: ['@/assets/scss/_colors.scss', '@/assets/scss/_variables.scss'],
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'nuxt-webfontloader'
   ],
 
+  webfontloader: {
+    google: {
+      families: ['Roboto', 'Noto+Sans+JP']
+    }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

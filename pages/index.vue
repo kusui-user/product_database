@@ -1,73 +1,69 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        product_database
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <h1>Reaction Timer</h1>
+    <!-- v-bind:disabled="isPlaying"はtrueのときdisabledにする -->
+    <button @click="start" v-bind:disabled="isPlaying">スタート</button>
+    <Block v-if="isPlaying" v-bind:delay="delay" @end="endGame" />
+    <Results v-if="showResults" v-bind:score="score" />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: "App",
+
+   data() {
+    return {
+      isPlaying: false,
+      delay: null,
+      score: null, //reactionTimeを受け取りたいので格納する変数を作る
+      showResults: false
+    };
+  },
+
+    methods: {
+    start() {
+      this.delay = 2000 + Math.random() * 3000;
+      this.isPlaying = true;
+      this.showResults = false;
+    },
+    endGame(reactionTime) {
+      this.score = reactionTime;
+      this.isPlaying = false;
+      this.showResults = true;
+    }
+  }
+
+};
+
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+<style lang="scss" scoped>
+.colord {
+  color: $color-red;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  color: #444;
+  margin-top: 60px;
 }
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
+button {
+  background-color: #31b0c7;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 18px;
   letter-spacing: 1px;
+  cursor: pointer;
+  margin: 10px;
+}
+button[disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
