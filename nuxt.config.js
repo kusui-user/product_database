@@ -43,7 +43,28 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyC9uThYJ0Q7z_nHwDq6xQGLf9xqiNrT0Ac",
+          authDomain: "test-20211207.firebaseapp.com",
+          projectId: "test-20211207",
+          storageBucket: "test-20211207.appspot.com",
+          messagingSenderId: "245387650161",
+          appId: "1:245387650161:web:7bec3ac1ef6426b159a7d0",
+          measurementId: '<measurementId>'
+        },
+        services: {
+          auth: true, // Just as example. Can be any other service.
+          firestore:true,
+          storage:true,
+          database:true,
+        }
+      }
+    ]
   ],
 
   webfontloader: {
