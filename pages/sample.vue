@@ -60,7 +60,7 @@ export default {
   .fill-space {
     margin: 0 auto;
     width: 60%;
-    height: 450px;
+    height: 350px;
     background-color: white;
      box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
 
