@@ -17,7 +17,10 @@
             <input v-model="password" type="password" />
           </div>
         </label>
-        <button type="submit" @click="createAccount">createAccount</button>
+        <div class="acount-box">
+        <button type="submit" v-if="done === false" @click="createAccount">createAccount</button>
+        <div class="after-msg" v-if="done">作成しました。3秒後にトップ移動 </div>
+        </div>
       </form>
     </div>
   </div>
@@ -29,6 +32,7 @@ export default {
     return {
       email: "",
       password: "",
+      done:false,
     };
   },
   methods: {
@@ -37,7 +41,12 @@ export default {
         await this.$fire.auth
           .createUserWithEmailAndPassword(this.email, this.password)
           .then(() => {
-            console.log("done!"); //eslint-disable-line
+            this.done = true
+          })
+          .then(() =>{
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 3000);
           });
       } catch (e) {
         console.log(e); //eslint-disable-line
@@ -90,10 +99,14 @@ export default {
           }
         }
       }
+      .acount-box{
+        position: relative;
+        margin: 30px auto;
+        width: 280px;
+
+      }
       button{
         width: 280px;
-        text-align: center;
-        margin: 50px auto;
         background-color: skyblue;
         color: white;
         border: none;
@@ -102,6 +115,17 @@ export default {
         &:hover{
           opacity: 0.9;
         }
+      }
+      .after-msg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        width: 280px;
+        background-color: red;
+        margin: 0 auto;
+        color: white;
+        line-height: 32px;
       }
     }
   }

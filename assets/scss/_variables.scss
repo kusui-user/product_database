@@ -34,7 +34,6 @@
 /* mq-target:指定してメディアクエリのみに適用 */
 @mixin target600() {
   @media screen and ( min-width:600px ) {
-    display: flex;
     @content;
   }
 }
