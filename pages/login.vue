@@ -18,7 +18,7 @@
           </div>
         </label>
         <div class="acount-box">
-        <button type="submit" v-if="done === false" @click="createAccount">ログイン</button>
+        <button type="submit" v-if="done === false" @click="login">ログイン</button>
         <div class="after-msg" v-if="done">作成しました。3秒後にトップ移動 </div>
         </div>
       </form>
@@ -28,6 +28,8 @@
 
 <script>
 export default {
+  middleware: 'consoleLog',
+
   data() {
     return {
       email: "",
@@ -52,6 +54,11 @@ export default {
         console.log(e); //eslint-disable-line
       }
     },
+    login(email,password){
+      this.$store.dispatch('login', {email:this.email, password:this.password})
+    }
+
+
   },
 };
 </script>
