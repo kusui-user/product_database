@@ -1,5 +1,8 @@
 <template>
   <div class="background">
+    <form action="">
+      <FormItemIcon :img="postData.thumbnail" type="file" @change="changeImg" />
+    </form>
     <p class="txt">アカウントの作成</p>
     <div class="fill-space">
       <form @submit.prevent class="form-space">
@@ -33,6 +36,10 @@ export default {
       email: "",
       password: "",
       done:false,
+      thumbnail:'',
+      postData:{
+        thumbnail:'',
+      },
     };
   },
   methods: {
@@ -50,6 +57,16 @@ export default {
           });
       } catch (e) {
         console.log(e); //eslint-disable-line
+      }
+    },
+    changeImg(e) {
+      this.thumbnail = e.target.files[0]
+      if(this.thumbnail){
+        const reader = new FileReader()
+        reader.readAsDataURL(this.thumbnail)
+        reader.onload = () => {
+          this.postData.thumbnail = reader.result + ''
+        }
       }
     },
   },
@@ -130,4 +147,10 @@ export default {
     }
   }
 }
+
+ .form-item-icon {
+    margin:0 auto 30px;
+    width: 120px;
+    height: 120px;
+  }
 </style>
