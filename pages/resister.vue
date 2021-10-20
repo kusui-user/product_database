@@ -21,7 +21,7 @@
           </div>
         </label>
         <div class="acount-box">
-        <button type="submit" v-if="done === false" @click="createAccount">createAccount</button>
+        <button type="submit" v-if="done === false" @click="register">createAccount</button>
         <div class="after-msg" v-if="done">作成しました。3秒後にトップ移動 </div>
         </div>
       </form>
@@ -67,6 +67,16 @@ export default {
         reader.onload = () => {
           this.postData.thumbnail = reader.result + ''
         }
+      }
+    },
+     register() {
+      if (this.password) {
+        this.$store.dispatch('register', {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          thumbnail: this.thumbnail,
+        })
       }
     },
   },
